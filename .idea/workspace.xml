@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b967de92-a66d-48af-bf20-bd13c3f0e2a0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/HeadsUpApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HeadsUpApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Templates/live_feed.html" beforeDir="false" afterPath="$PROJECT_DIR$/Templates/live_feed.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,11 +26,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HeadsUpApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+            <state relative-caret-position="525">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -59,11 +59,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Templates/live_feed.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+            <state relative-caret-position="105">
+              <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+              <folding>
+                <element signature="e#142#160#0#HTML" expanded="true" />
+                <element signature="e#234#268#0#HTML" expanded="true" />
+                <element signature="e#349#378#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,9 +99,9 @@
         <option value="$PROJECT_DIR$/HeadsUp/settings.py" />
         <option value="$PROJECT_DIR$/HeadsUp/urls.py" />
         <option value="$PROJECT_DIR$/Templates/home.html" />
-        <option value="$PROJECT_DIR$/Templates/live_feed.html" />
         <option value="$PROJECT_DIR$/HeadsUpApp/urls.py" />
         <option value="$PROJECT_DIR$/HeadsUpApp/views.py" />
+        <option value="$PROJECT_DIR$/Templates/live_feed.html" />
       </list>
     </option>
   </component>
@@ -187,12 +192,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549131581874</updated>
-      <workItem from="1549131584443" duration="6405000" />
+      <workItem from="1549131584443" duration="7434000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6405000" />
+    <option name="totallyTimeSpent" value="7434000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -269,13 +274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Templates/live_feed.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HeadsUpApp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -288,10 +286,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HeadsUpApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+        <state relative-caret-position="525">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Templates/live_feed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="44" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="44" />
+          <folding>
+            <element signature="e#142#160#0#HTML" expanded="true" />
+            <element signature="e#234#268#0#HTML" expanded="true" />
+            <element signature="e#349#378#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

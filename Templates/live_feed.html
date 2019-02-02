@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    <h3 align="left" style="padding-top: 5px;"><a href={% url 'home_page' %}>Back to home</a></h3>
+    <h1 align="center" style="padding: 5px;">Video Streaming Demonstration</h1>
 
-    <h1>Video Streaming Demonstration</h1>
-    <img src="{% url 'live_feed' %}">
+    <div id="container" align="center" style="padding: 10px;">
+        <img style="width: 80%; height: 50%;" src="{% url 'live_feed' %}">
+    </div>
 
 {% endblock %}
