@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+
+{% block title %}
+<title>Live Feed | Dronomaly</title>
+{% endblock %}
+
+{% block content %}
+
+    <h1>Video Streaming Demonstration</h1>
+    <img src="{% url 'live_feed' %}">
+
+{% endblock %}
