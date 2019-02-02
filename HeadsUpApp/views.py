@@ -1,105 +1,45 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, StreamingHttpResponse
+import threading
 
 import time
 import cv2
+import numpy as np
+
 # Create your views here.
 
 def start_live(request):
     return render(request, 'live_feed.html', {})
 
 def start_live_feed(request):
-    return main_body()
+    return StreamingHttpResponse(gen(VideoCamera()), content_type="multipart/x-mixed-replace; boundary=frame")
 
-class Camera():
-    # Constructor...
+# object that brings in the view from the drone
+
+class VideoCamera(object):
     def __init__(self):
-        w = 640  # Frame width...
-        h = 480  # Frame hight...
-        fps = 20.0  # Frames per second...
-        resolution = (w, h)  # Frame size/resolution...
-
-        self.cap = cv2.VideoCapture(0)  # Prepare the camera...
-        print("Camera warming up ...")
-        time.sleep(1)
-        # Prepare Capture
-        self.ret, self.frame = self.cap.read()
-
-        # Prepare output window...
-        self.winName = "Motion Indicator"
-        cv2.namedWindow(self.winName, cv2.WINDOW_AUTOSIZE)
-
-        # Read three images first...
-        self.prev_frame = cv2.cvtColor(self.cap.read()[1], cv2.COLOR_RGB2GRAY)
-        self.current_frame = cv2.cvtColor(self.cap.read()[1], cv2.COLOR_RGB2GRAY)
-        self.next_frame = cv2.cvtColor(self.cap.read()[1], cv2.COLOR_RGB2GRAY)
-
-        # Define the codec and create VideoWriter object
-        self.fourcc = cv2.VideoWriter_fourcc(*'H264')  # You also can use (*'XVID')
-        self.out = cv2.VideoWriter('output.avi', self.fourcc, fps, (w, h), True)
-
-    def get_frame(self):
-        self.frames = open("stream.jpg", 'wb+')
-        s, img = self.cap.read()
-        if s:  # frame captures without errors...
-            cv2.imwrite("stream.jpg", img)  # Save image...
-        return self.frames.read()
-
-    def diffImg(self, tprev, tc, tnex):
-        # Generate the 'difference' from the 3 captured images...
-        Im1 = cv2.absdiff(tnex, tc)
-        Im2 = cv2.absdiff(tc, tprev)
-        return cv2.bitwise_and(Im1, Im2)
-
-    def captureVideo(self):
-        # Read in a new frame...
-        self.ret, self.frame = self.cap.read()
-        # Image manipulations come here...
-        # This line displays the image resulting from calculating the difference between
-        # consecutive images...
-        diffe = self.diffImg(self.prev_frame, self.current_frame, self.next_frame)
-        cv2.imshow(self.winName, diffe)
-
-        # Put images in the right order...
-        self.prev_frame = self.current_frame
-        self.current_frame = self.next_frame
-        self.next_frame = cv2.cvtColor(self.frame, cv2.COLOR_RGB2GRAY)
-        return ()
-
-    def saveVideo(self):
-        # Write the frame...
-        self.out.write(self.frame)
-        return ()
+        self.video = cv2.VideoCapture(0)
+        (self.grabbed, self.frame) = self.video.read()
+        threading.Thread(target=self.update, args=()).start()
 
     def __del__(self):
-        cv2.destroyAllWindows()
-        self.cap.release()
-        self.out.release()
-        print("Camera disabled and all output windows closed...")
-        return ()
+        self.video.release()
+
+    def get_frame(self):
+        image = self.frame
+        ret, jpeg = cv2.imencode('.jpg', image)
+        return jpeg.tobytes()
+
+    def update(self):
+        while True:
+            (self.grabbed, self.frame) = self.video.read()
 
 
-def main_body():
-    # Create a camera instance...
-    cam1 = Camera()
-
-    while (True):
-        # Display the resulting frames...
-        cam1.captureVideo()  # Live stream of video on screen...
-        cam1.saveVideo()  # Save video to file 'output.avi'...
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-    return ()
+cam = VideoCamera()
 
 
 def gen(camera):
-    """Video streaming generator function."""
     while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + bytearray(frame) + b'\r\n')
-
-def video_feed():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return HttpResponse(gen(Camera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+        frame = cam.get_frame()
+        yield(b'--frame\r\n'
+              b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
