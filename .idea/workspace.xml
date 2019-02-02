@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b967de92-a66d-48af-bf20-bd13c3f0e2a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DemoApp/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HeadsUpApp/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Templates/live_feed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeadsUp/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HeadsUp/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeadsUp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HeadsUp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HeadsUpApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HeadsUpApp/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HeadsUpApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="74" column="31" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
+            <state relative-caret-position="235">
+              <caret line="73" column="22" lean-forward="true" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -84,6 +77,11 @@
         <option value="HTML File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>release</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -189,12 +187,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549131581874</updated>
-      <workItem from="1549131584443" duration="4515000" />
+      <workItem from="1549131584443" duration="4752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4515000" />
+    <option name="totallyTimeSpent" value="4752000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -290,8 +288,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HeadsUpApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="74" column="31" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
+        <state relative-caret-position="235">
+          <caret line="73" column="22" lean-forward="true" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

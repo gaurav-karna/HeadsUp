@@ -74,7 +74,7 @@ class Camera():
     def __del__(self):
         cv2.destroyAllWindows()
         self.cap.release()
-        # self.out.release()
+        self.out.release()
         print("Camera disabled and all output windows closed...")
         return ()
 
