@@ -2,15 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, StreamingHttpResponse
 import threading
 import pyrebase
-# import time
 import cv2
 from django.contrib.gis.geoip2 import GeoIP2
-# import numpy as np
 
 from .forms import *
 
-from . import db_models as db_method
+from itertools import chain
 
+# from . import db_models as db_method
 
 ###########################-FIREBASE SETUP-##############################################
 
@@ -49,7 +48,8 @@ def volunteer_signup(request):
     if request.method == 'POST':
         ip = get_client_ip(request)
         g = GeoIP2()
-        dataset = g.city(str(ip))
+        # dataset = g.city(str(ip))
+        dataset = g.city('67.134.204.29')
         # store new volunteer in Firebase
         vol_form = VolunteerForm(request.POST)
         if vol_form.is_valid():
@@ -60,7 +60,8 @@ def volunteer_signup(request):
                 'Age':vol_form.cleaned_data['Age'],
                 'Gender':vol_form.cleaned_data['Gender'],
                 'Latitude':dataset.get('latitude', None),
-                'Longitude':dataset.get('longitude', None)
+                'Longitude':dataset.get('longitude', None),
+                'City':dataset.get('city', None)
             }
             # The .push method generates a unique timestamp key ; no need for hash
             db.child("Volunteers").push(vol_data)
@@ -80,32 +81,21 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-# def confirm_volunteer(request):
-#     email = request.POST.get('email')
-#     passw = request.POST.get("pass")
-#     try:
-#         user = auth.sign_in_with_email_and_password(email, passw)
-#     except:
-#         message = "Invalid credentials!"
-#         return render(request, "login.html", {"msg": message})
-#     return redirect('/admin/login')
-
-# returns a list of coordinates to be encoded into GeoJSON
+# # returns a list of coordinates to be encoded into GeoJSON
 def get_locations():
     location_list = []
     all_users = db.child("Volunteers").get()
     for user in all_users.each():
-        pair = ((user.val().get('Latitude')), (user.val().get('Longitude')))
+        pair = ((user.val().get('City')), (user.val().get('Latitude')), (user.val().get('Longitude')))
         if pair in location_list:
             pass
         else:
             location_list.append(pair)
     # location_list is a list of unique pairs of tuples denoting different locations
+
+    # now to convert location list from dictionary back into list
+    location_list = list(chain.from_iterable(location_list))
     return location_list
-
-def encode_geoJSON (location_list):
-    pass
-
 
 ###########################-ADMIN BASED VIEWS-##############################################
 

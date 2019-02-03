@@ -9,6 +9,7 @@ class Volunteer():
         Gender = None
         Latitude = None
         Longitude = None
+        City = None
 
 class Admin():
     def __init__(self):

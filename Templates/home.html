@@ -13,30 +13,48 @@
 
     <h3><a href="{% url 'signIn' %}">Admin Login</a></h3>
     <h3><a href="{% url 'new_volunteer' %}">New Volunteer</a></h3>
-
-    <div id="map"></div>
+    <div id="map" style="height: 400px; width: 100%;"></div>
     <script>
+        // Initialize and add the map
+        function initMap() {
+            var locations = {{ my_array|safe }};
 
-      function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: new google.maps.LatLng(42.360, -71.058)
+            });
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
-        });
+            var infowindow = new google.maps.InfoWindow();
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Listed Volunteers'
-        });
-      }
+            var marker, i;
+
+            for (i = 1; i < locations.length; i += 3) {
+                coords = {
+                    lat: locations[i],
+                    lng: locations[i + 1]
+                };
+
+                marker = new google.maps.Marker({
+                    position: coords,
+                    map: map
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i - 1]);
+                        infowindow.open(map, marker);
+                    }
+                })
+                (marker, i));
+
+            }
+
+        }
     </script>
 
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQNlJlUx41CYZ3w7vD14qCmLhQzYJ2Oyo&callback=initMap">
     </script>
-
 {% endblock %}
 
 </body>
