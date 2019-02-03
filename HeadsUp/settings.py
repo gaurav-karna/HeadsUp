@@ -25,7 +25,7 @@ SECRET_KEY = '87v4s)=-%g@%5kv3rj48puou0-c_jp=kx5%sb_s53=1tr12&jm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'HeadsUpApp',
     'DemoApp',
+    'pyrebase',
 
 ]
 

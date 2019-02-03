@@ -1,12 +1,49 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, StreamingHttpResponse
 import threading
-
-import time
+import pyrebase
+# import time
 import cv2
-import numpy as np
+# import numpy as np
+
+from . import db_methods as db_method
+
+
+###########################-FIREBASE SETUP-##############################################
+
+config = {
+    "apiKey": "AIzaSyBOXMMnldokTRL1y6Je7sYGx8AFVkNRXRY",
+    "authDomain": "smartglass-e01ec.firebaseapp.com",
+    "databaseURL": "https://smartglass-e01ec.firebaseio.com",
+    "storageBucket": "smartglass-e01ec.appspot.com"
+}
+
+# enabling important global variables
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+db = firebase.database()
+
+##########################################################################################
+
+#---- Firebase authentication service ----#
+
+def signIn(request):
+    return render(request, "login.html")
+
+def postsign(request):
+    email=request.POST.get('email')
+    passw = request.POST.get("pass")
+    try:
+        user = auth.sign_in_with_email_and_password(email,passw)
+    except:
+        message = "Invalid credentials!"
+        return render(request,"login.html",{"msg":message})
+    return redirect('/admin/login')
 
 # Create your views here.
+
+def admin_welcome(request):
+    return render(request, 'admin_home.html', {})
 
 def start_live(request):
     return render(request, 'live_feed.html', {})

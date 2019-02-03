@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+{% block title %}
+    <title>Login | Dronamaly</title>
+
+{% endblock %}
+{% if msg %}
+    <script>
+        alert('{{msg}}')
+    </script>
+{% endif %}
+
+{% block content %}
+
+<form action="/postsign/" method="POST">
+    {% csrf_token %}
+    Email :
+    <input type="email" name="email">
+    Password:
+    <input type="password" name="pass">
+    <input type="submit" value="Sign In">
+</form>
+
+{% endblock %}
+

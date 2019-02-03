@@ -10,5 +10,8 @@ from . import views
 urlpatterns = [
     path('live', views.start_live, name='start_live'),
     path('live/feed', views.start_live_feed, name='live_feed'),
+    path('login/', views.signIn, name='signIn'),
+    path('postsign/', views.postsign, name='postsign'),
+    path('admin/welcome', views.admin_welcome, name='admin_welcome')
 
 ]

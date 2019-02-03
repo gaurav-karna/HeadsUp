@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     {% block title %}
-    <title>Home | Dronomaly</title>
+        <title>Home | Dronomaly</title>
     {% endblock %}
 </head>
 <body>
 {% block content %}
 
-<h1>Home Page of Dronomaly</h1>
+    <h1>Home Page of Dronomaly</h1>
 
-<h3>Go to <a href="/headsup/live">livestream page</a>></h3>
+    <h3><a href="{% url 'signIn' %}">Admin Login</a>></h3>
 
 {% endblock %}
 
