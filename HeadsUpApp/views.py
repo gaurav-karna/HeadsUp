@@ -40,6 +40,7 @@ def postsign(request):
     except:
         message = "Invalid credentials!"
         return render(request,"login.html",{"msg":message})
+    return render(request, "welcome.html", {})
 
 #---- New Volunteer Signup----#
 
@@ -103,7 +104,7 @@ def get_locations():
 ###########################-ADMIN BASED VIEWS-##############################################
 
 def admin_welcome(request):
-    return render(request, 'admin_home.html', {})
+    return render(request, 'welcome.html', {})
 
 def start_live(request):
     return render(request, 'live_feed.html', {})
