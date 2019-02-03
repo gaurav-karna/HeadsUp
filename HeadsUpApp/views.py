@@ -40,7 +40,6 @@ def postsign(request):
     except:
         message = "Invalid credentials!"
         return render(request,"login.html",{"msg":message})
-    return redirect('/admin/login')
 
 #---- New Volunteer Signup----#
 
