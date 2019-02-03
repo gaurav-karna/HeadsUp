@@ -9,4 +9,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home_page'),
+    path('documentation', views.devpost, name='devpost'),
+    path('team', views.team, name='team'),
+
 ]

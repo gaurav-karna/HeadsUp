@@ -14,5 +14,4 @@ urlpatterns = [
     path('postsign/', views.postsign, name='postsign'),
     path('admin/welcome', views.admin_welcome, name='admin_welcome'),
     path('new_volunteer', views.volunteer_signup, name='new_volunteer'),
-
 ]

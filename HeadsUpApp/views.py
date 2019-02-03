@@ -48,9 +48,11 @@ def volunteer_signup(request):
     if request.method == 'POST':
         ip = get_client_ip(request)
         g = GeoIP2()
-        # dataset = g.city(str(ip))
-        dataset = g.city('67.134.204.29')
+        dataset = g.city(str(ip))
+        # dataset = g.city('182.50.69.11')
         # store new volunteer in Firebase
+        if dataset == '127.0.0.1':
+            dataset = '67.134.204.29'
         vol_form = VolunteerForm(request.POST)
         if vol_form.is_valid():
             vol_data = {
@@ -68,8 +70,10 @@ def volunteer_signup(request):
             return render(request, 'thank_you.html', vol_data)
         return render(request, 'thank_you.html', {})
     else:
+        locations = get_locations()
         context = {
-            'profile_form':VolunteerForm()
+            'profile_form':VolunteerForm(),
+            'my_array': locations
         }
         return render(request, 'new_volunteer.html', context)
 

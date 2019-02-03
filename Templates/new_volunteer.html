@@ -6,8 +6,73 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST"> {% csrf_token %}
-        {{ profile_form.as_p }}
-        <input type="submit" value="Submit">
-    </form>
+    {% load static %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home_page' %}"><img src="{% static 'logo.png' %}" width="30" height="30"
+                                              class="d-inline-block align-top" alt="">&nbsp;Dronomaly</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav paddingClass">
+                <li class="nav-item active"><a class="nav-link" href="{% url 'signIn' %}">Admin Login</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'new_volunteer' %}">Volunteer Space</a>
+                </li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'devpost' %}">DevPost</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'team' %}">Our Team</a></li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="headline" align="center" style="padding-top: 65px; padding-bottom: 5px;">
+        <h1>Join our team of disaster search and rescue volunteers today!</h1>
+    </div>
+
+    <div id="map" style="height: 400px; width: 100%;"></div>
+    <script>
+        // Initialize and add the map
+        function initMap() {
+            var locations = {{ my_array|safe }};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                center: new google.maps.LatLng(33.360, -5.058)
+            });
+            var infowindow = new google.maps.InfoWindow();
+            var marker, i;
+            for (i = 1; i < locations.length; i += 3) {
+                coords = {
+                    lat: locations[i],
+                    lng: locations[i + 1]
+                };
+                marker = new google.maps.Marker({
+                    position: coords,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i - 1]);
+                        infowindow.open(map, marker);
+                    }
+                })
+                (marker, i));
+            }
+        }
+    </script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQNlJlUx41CYZ3w7vD14qCmLhQzYJ2Oyo&callback=initMap">
+    </script>
+
+    <div id="volunteer_form" align="center" style="padding-top: 10px">
+        <h3>Volunteer Signup Form</h3>
+        <form method="POST"> {% csrf_token %}
+            {{ profile_form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
 {% endblock %}

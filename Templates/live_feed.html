@@ -5,6 +5,29 @@
 {% endblock %}
 
 {% block content %}
+
+    {% load static %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home_page' %}"><img src="{% static 'logo.png' %}" width="30" height="30"
+                                                                  class="d-inline-block align-top" alt="">&nbsp;Dronomaly</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav paddingClass">
+                <li class="nav-item active"><a class="nav-link" href="{% url 'signIn' %}">Admin Login</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'new_volunteer' %}">Volunteer Space</a>
+                </li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'devpost' %}">DevPost</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'team' %}">Our Team</a></li>
+
+            </ul>
+
+        </div>
+    </nav>
+
     <h3 align="left" style="padding-top: 5px;"><a href={% url 'home_page' %}>Back to home</a></h3>
     <h1 align="center" style="padding: 5px;">Video Streaming Demonstration</h1>
 

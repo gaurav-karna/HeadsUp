@@ -1,7 +1,6 @@
 {% extends 'home.html' %}
 {% block title %}
     <title>Login | Dronamaly</title>
-
 {% endblock %}
 {% if msg %}
     <script>
@@ -10,15 +9,43 @@
 {% endif %}
 
 {% block content %}
+    <body style="background-color: #bcc4e0">
+    {% load static %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home_page' %}"><img src="{% static 'logo.png' %}" width="30" height="30"
+                                                                  class="d-inline-block align-top" alt="">&nbsp;Dronomaly</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<form action="/postsign/" method="POST">
-    {% csrf_token %}
-    Email :
-    <input type="email" name="email">
-    Password:
-    <input type="password" name="pass">
-    <input type="submit" value="Sign In">
-</form>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav paddingClass">
+                <li class="nav-item active"><a class="nav-link" href="{% url 'signIn' %}">Admin Login</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'new_volunteer' %}">Volunteer Space</a>
+                </li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'devpost' %}">DevPost</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{% url 'team' %}">Our Team</a></li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <form action="/postsign/" method="POST">
+        {% csrf_token %}
+        <div id="portal" align="center" style="padding: 200px;">
+            <h3>Login Portal</h3>
+            <div id="thin_line"></div>
+            <h5>Email:</h5>
+            <input type="email" name="Email">
+            <h5>Password:</h5>
+            <input type="password" name="Password"><br><br>
+            <input type="submit" value="Sign In">
+        </div>
+
+    </form>
+    </body>
 
 {% endblock %}
 
